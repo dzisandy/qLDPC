@@ -1,7 +1,7 @@
 function [c,F] = alg1(r, m, H, theta)
 [~,N] = size(H);
-H = full(H);
-S = gf(r,m)*gf(H.',m);
+H_gf = gf(full(H.'),m);
+S = gf(r,m)*H_gf;
 b = 1;
 while b == 1
     b = 0;
@@ -25,7 +25,7 @@ while b == 1
         if a - z >= theta
             final = gf(r(i),m) + gf(M, m);
             r(i) = final.x;
-            S = gf(r,m)*gf(H.',m);
+            S = gf(r,m)*H_gf;
             b = 1;
         end
     end
