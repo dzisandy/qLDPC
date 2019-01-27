@@ -3,6 +3,7 @@ function [c,F] = alg1(r, m, H, theta)
 H_gf = gf(full(H.'),m);
 S = gf(r,m)*H_gf;
 b = 1;
+itr = 0;
 while b == 1
     b = 0;
     for i = 1:N
@@ -29,11 +30,18 @@ while b == 1
             b = 1;
         end
     end
+    itr = itr + 1;
+    if itr >= 100
+        c = r;
+        F = 1;
+        break
+    end
     F = 1;
     c = r;
     if nnz(S.x) == 0
         F = 0;
     end
+    
 
       
     end
