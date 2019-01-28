@@ -1,7 +1,7 @@
 [H,Q] = alist2sparse('test.alist'); %parity check matrix in sparse format
 [M,N] = size(H); % defining sizes
 m  = 9; % gf(2^m)
-fid = fopen('FER.txt', 'wb');
+fid = fopen('FER.txt', 'w');
 %p = 0.02; %error probability
 r = noise_cdw(N,p,m); %received sequince
 theta = 0; %threshold
@@ -18,7 +18,7 @@ for j = [0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.11, 0.12, 
     end
     disp(j)
     fer = (500-er)/500
-    fwrite(fid, fer, 'double'); 
+    fprintf(fid,'%d\n', fer); 
 end
         
         
