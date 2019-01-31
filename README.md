@@ -9,6 +9,6 @@ My implementations of single/multiple threshold majority decoding algorithms. Th
 
 1. Implemented both algorithms from paper, built up a FER/p dependency. (As ISP research project)
 
-2. To be continued
+2. To be continued...
 
 
