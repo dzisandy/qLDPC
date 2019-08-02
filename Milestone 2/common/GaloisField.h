@@ -182,7 +182,7 @@ public:
 		return m_pElementToDegreeTable[moduloCast(iElement)];
 	}
 
-	unsigned int moduloCast(signed int iElement) const
+	unsigned int moduloCast(unsigned int iElement) const
 	{
 		int iModulo = (int)(m_iCardinality);
 		iElement %= 2;
@@ -308,8 +308,6 @@ public:
 		m_iDegree = m_gf.getDegreeByElement(m_iElement);
 		return *this;
 	}
-
-
 	
 	const GaloisFieldElement& operator+=(unsigned int iElement)
 	{
