@@ -24,6 +24,79 @@ using namespace std;
 //=======================================================================================================================================
 
 
+//Threshold
+bool Threshold(LDPC& ldpc, const vector<FieldElement>& x, int theta, vector<FieldElement>& y, int* thetas)
+{
+    vector<FieldElement> S(ldpc.m);	
+    int b = 1;
+
+    for (int i = 0; i < ldpc.n; ++i)
+    {
+        y[i] = x[i];
+    }
+
+    //Update syndrome
+    for (int i = 0; i < ldpc.m; ++i)
+    {
+    S[i] = 0;
+    for (int j = 0; j < ldpc.row_weight[j]; ++j)
+    {
+        {
+            S[i] += ldpc.H(i, j)*x[ldpc.row_col(i,j)];
+        }
+    }
+    //y[i] = S[i];
+    }
+    
+    while (b == 1)
+    {
+       b = 0;
+       for (int i = 0; i < ldpc.n; i++)
+        {   
+            vector<int> counter(Q);
+            for (int k = 0; k < ldpc.col_weight[i]; k++)
+            {
+                FieldElement msg = ((ldpc.H(k,i))^(-1))*S[k];
+                counter[msg.getElement()]+= 1;
+            }
+            int z = counter[0];
+            int a = 0;
+            for (int z = 0; z < counter.size(); z++){
+                if (counter[z] > a ){
+                    a = counter[z];
+                }
+            }
+            FieldElement m = counter[a];
+            if (a - z > theta)
+            {
+                y[i] = y[i] + m;
+                for (int i = 0; i < ldpc.m; ++i)
+                {
+                S[i] = 0;
+                for (int j = 0; j < ldpc.row_weight[j]; ++j)
+                {
+                    {
+                        S[i] += ldpc.H(i, j)*y[ldpc.row_col(i,j)];
+                    }
+                }
+                }
+                b = 1;
+            }
+            if (z = 0){
+            break;
+            }
+       }
+       
+       
+    }
+    
+
+    if (thetas)
+    {
+        *thetas = theta;
+    }
+    return 1;
+}
 // Majority decoding
 bool Majority(LDPC& ldpc, const vector<FieldElement>& x, int max_iter, vector<FieldElement>& y, int* number_of_iter)
 {
@@ -196,6 +269,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
             break;   
         }
         /* Hard desicion decoders */
+        case 4:
         case 5:
         case 6:
         {
@@ -227,6 +301,10 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
             else if (command == 6)
             {
                 result = MajoritySeq(ldpc, x, iMaxNumberOfIterations, y, &number_of_iter);
+            }
+            else if (command ==4)
+            {
+                result = Threshold(ldpc, x, iMaxNumberOfIterations, y, &number_of_iter);
             }
                      
             /* denial flag */

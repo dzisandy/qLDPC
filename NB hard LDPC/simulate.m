@@ -64,8 +64,12 @@ function simulate(ldpc_filename, decoder, iter, snr_array, fe)
             in_bit_errors = in_bit_errors + bit_weight(bitxor(cwd, rx_cwd));
 
             % decode
+            disp('cdw = ');
+            disp(cwd);
+            
             [result, iter, est_cwd] = decode_ldpc(decoder, ldpc, rx_cwd, iter);
-
+            disp('est = ')
+            disp(est_cwd);
             error_indexes = find(cwd ~= est_cwd);
             if ~isempty(error_indexes)
                 wrong_dec = wrong_dec + 1;
