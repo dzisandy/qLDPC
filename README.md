@@ -22,7 +22,7 @@ Implemented single/multiple threshold majority decoding algorithms from paper, b
 * Alexey Frolov
 * Pavel Rybin
 
-## Copiright
+## Copyright
 © 2019, Moscow.
 
 
