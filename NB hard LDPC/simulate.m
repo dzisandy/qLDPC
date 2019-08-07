@@ -1,9 +1,9 @@
-function simulate(ldpc_filename, decoder, iter, snr_array, fe)
+function simulate(ldpc_filename, decoder, iter, snr_array, fe ,thetas)
     % initialize LDPC 
     [h, q] = alist2sparse(ldpc_filename);
-    
+ 
     init_ldpc = @(x) decode_soft(0, x);
-    decode_ldpc = @(decoder, ldpc, iter, x) decode_soft(decoder, ldpc, iter, x);
+    decode_ldpc = @(decoder, ldpc, iter, x, thetas, thetas_num) decode_soft(decoder, ldpc, iter, x, thetas, thetas_num);
     
     [H, G] = ldpc_h2g(h,q);
     [K, N] = size(G);
@@ -64,12 +64,12 @@ function simulate(ldpc_filename, decoder, iter, snr_array, fe)
             in_bit_errors = in_bit_errors + bit_weight(bitxor(cwd, rx_cwd));
 
             % decode
-            disp('cdw = ');
-            disp(cwd);
+            %disp('cdw = ');
+            %disp(cwd);
             
-            [result, iter, est_cwd] = decode_ldpc(decoder, ldpc, rx_cwd, iter);
-            disp('est = ')
-            disp(est_cwd);
+            [result, iter, est_cwd] = decode_ldpc(decoder, ldpc, rx_cwd, iter, thetas, length(thetas));
+            %disp('est = ')
+            %disp(est_cwd);
             error_indexes = find(cwd ~= est_cwd);
             if ~isempty(error_indexes)
                 wrong_dec = wrong_dec + 1;
@@ -82,10 +82,20 @@ function simulate(ldpc_filename, decoder, iter, snr_array, fe)
                 ber(ii) = bit_errors/N/log2(q)/tests;
 
                 disp(sprintf('\tin_ser = %f, in_ber = %f, fer = %f, ser = %f ber = %f' , in_ser(ii), in_ber(ii), fer(ii), ser(ii), ber(ii)));
-                save(sprintf('result_q=%d_ldpc=%s_decoder=%d_iter=%d.mat', q, ldpc_filename, decoder, iter)); 
+                %save(sprintf('result_q=%d_ldpc=%s_decoder=%d_iter=%d.mat', q, ldpc_filename, decoder, iter));
+                if (decoder == 7)
+                    save(sprintf('result_q=%d_ldpc=%s_decoder=%d_iter=%d_thetas_num=%d.mat', q, ldpc_filename, decoder, iter, length(thetas)));
+                else
+                    save(sprintf('result_q=%d_ldpc=%s_decoder=%d_iter=%d.mat', q, ldpc_filename, decoder, iter));
+                end
+            
             end
         end
-        save(sprintf('result_q=%d_ldpc=%s_decoder=%d_iter=%d.mat', q, ldpc_filename, decoder, iter)); 
+        if (decoder == 7)
+            save(sprintf('result_q=%d_ldpc=%s_decoder=%d_iter=%d_thetas_num=%d.mat', q, ldpc_filename, decoder, iter, length(thetas)));
+        else
+            save(sprintf('result_q=%d_ldpc=%s_decoder=%d_iter=%d.mat', q, ldpc_filename, decoder, iter));
+        end 
    end
     
 end

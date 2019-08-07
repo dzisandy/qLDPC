@@ -23,7 +23,7 @@ using namespace std;
 //============================================================= Hard desicion decoders ==================================================
 //=======================================================================================================================================
 
-// Threshold decoding
+
 bool Threshold(LDPC& ldpc, const vector<FieldElement>& x, int max_iter, int theta, vector<FieldElement>& y, int* number_of_iter)
 {
     Matrix<FieldElement>  R_msgs(ldpc.m, ldpc.rmax);
@@ -81,15 +81,13 @@ bool Threshold(LDPC& ldpc, const vector<FieldElement>& x, int max_iter, int thet
                     index = k;
                 }
             }
-            if (max - result[0] > theta){
-                if (y[i].getElement() != index)
-                {
-                    y[i] = FieldElement(index);
-                    for (int k = 0; k < ldpc.col_weight[i]; k++)
-                    {
-                        Q_msgs(ldpc.msgs_col(i,k)) = y[i];
-                        affected_rows.push_back(ldpc.col_row(i,k));
-                    }
+            if (y[i].getElement() != index)
+            {
+                y[i] = FieldElement(index);
+                for (int k = 0; k < ldpc.col_weight[i]; k++)
+		        {
+		            Q_msgs(ldpc.msgs_col(i,k)) = y[i];
+	                affected_rows.push_back(ldpc.col_row(i,k));
                 }
             }
         }
@@ -99,8 +97,101 @@ bool Threshold(LDPC& ldpc, const vector<FieldElement>& x, int max_iter, int thet
     {
         *number_of_iter = max_iter;
     }
-    return 0;
+    return 1;
 }
+
+
+
+
+
+//Threshold //w(S) = 0 -> return 1; else return 0;
+// bool Threshold(LDPC& ldpc, const vector<FieldElement>& x, int theta, vector<FieldElement>& y)
+// {
+//     vector<FieldElement> S(ldpc.m);
+//     int b = 1;
+//     int syndromeWeight = 0;
+// 
+//     
+//     for (int i = 0; i < ldpc.n; ++i)
+//     {
+//         y[i] = x[i];
+//     }
+//     
+//     //Update syndrome
+//     for (int ii = 0; ii < ldpc.m; ++ii)
+//     {
+//         S[ii] = 0;
+//         for (int j = 0; j < ldpc.row_weight[ii]; ++j)
+//         {
+//             {
+//             S[ii] += ldpc.H(ii, j)*x[ldpc.row_col(ii,j)];
+//             }
+//         }
+//         //y[i] = S[i];
+//     }
+//     
+//     while (b == 1)
+//     {
+//         b = 0;        
+//         for (int i = 0; i < ldpc.n; i++)
+//         {
+//             vector<int> counter(Q);
+//             for (int k = 0; k < ldpc.col_weight[i]; k++)
+//             {
+//                 FieldElement msg = ((ldpc.H(k,i))^(-1))*S[k];
+//                 counter[msg.getElement()]+= 1;
+//             }
+//             int z = counter[0];
+//             int a = 0;
+//             int idx = -1;
+//             for (int ii = 1; ii < counter.size(); ii++){
+//                 if (counter[ii] >= a ){
+//                     a = counter[ii];
+//                     idx = ii;
+//                 }
+//             }
+//             FieldElement m = idx;
+//             if (a - z > theta)
+//             {
+//                 y[i] = y[i] + m;
+//                 for (int ii = 0; ii < ldpc.m; ++ii)
+//                 {
+//                     S[ii] = 0;
+//                     for (int j = 0; j < ldpc.row_weight[ii]; ++j)
+//                     {
+//                        S[ii] += ldpc.H(ii, j)*y[ldpc.row_col(ii,j)];
+//                     }
+//                 }
+//                 b = 1;
+//             }
+//         }
+//         
+//         int syndromeWeight_temp = 0;
+//         for (int ii = 0; ii < ldpc.m; ++ii)
+//         {
+//             if (S[ii].getElement() != 0)
+//                 syndromeWeight_temp += 1; 
+//         }
+//         if (syndromeWeight_temp > syndromeWeight)
+//         {
+//             return 0;
+//             
+//         }
+//         else
+//         {
+//             syndromeWeight = syndromeWeight_temp;
+//         }
+//     }
+//     if (syndromeWeight == 0)
+//     {
+//         return 1;
+//     }
+//     else
+//     {
+//         return 0;
+//     }
+// }
+
 
 // Majority decoding
 bool Majority(LDPC& ldpc, const vector<FieldElement>& x, int max_iter, vector<FieldElement>& y, int* number_of_iter)
@@ -310,7 +401,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
                 
                for (int itr = 0; itr < thetas_num; itr++)
                {
-                result = Threshold(ldpc, x, iMaxNumberOfIterations, thetas[itr], y, &number_of_iter);
+                result = Threshold(ldpc, x, thetas[itr], y);
                 if (result == 1)
                 {
                     break;
@@ -346,94 +437,3 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
         break;
     }
 }
-
-
-// Trash 
-
-//Threshold //w(S) = 0 -> return 1; else return 0;
-// bool Threshold(LDPC& ldpc, const vector<FieldElement>& x, int theta, vector<FieldElement>& y)
-// {
-//     vector<FieldElement> S(ldpc.m);
-//     int b = 1;
-//     int syndromeWeight = 0;
-// 
-//     
-//     for (int i = 0; i < ldpc.n; ++i)
-//     {
-//         y[i] = x[i];
-//     }
-//     
-//     //Update syndrome
-//     for (int ii = 0; ii < ldpc.m; ++ii)
-//     {
-//         S[ii] = 0;
-//         for (int j = 0; j < ldpc.row_weight[ii]; ++j)
-//         {
-//             {
-//             S[ii] += ldpc.H(ii, j)*x[ldpc.row_col(ii,j)];
-//             }
-//         }
-//         //y[i] = S[i];
-//     }
-//     
-//     while (b == 1)
-//     {
-//         b = 0;        
-//         for (int i = 0; i < ldpc.n; i++)
-//         {
-//             vector<int> counter(Q);
-//             for (int k = 0; k < ldpc.col_weight[i]; k++)
-//             {
-//                 FieldElement msg = ((ldpc.H(k,i))^(-1))*S[k];
-//                 counter[msg.getElement()]+= 1;
-//             }
-//             int z = counter[0];
-//             int a = 0;
-//             int idx = -1;
-//             for (int ii = 1; ii < counter.size(); ii++){
-//                 if (counter[ii] >= a ){
-//                     a = counter[ii];
-//                     idx = ii;
-//                 }
-//             }
-//             FieldElement m = idx;
-//             if (a - z > theta)
-//             {
-//                 y[i] = y[i] + m;
-//                 for (int ii = 0; ii < ldpc.m; ++ii)
-//                 {
-//                     S[ii] = 0;
-//                     for (int j = 0; j < ldpc.row_weight[ii]; ++j)
-//                     {
-//                        S[ii] += ldpc.H(ii, j)*y[ldpc.row_col(ii,j)];
-//                     }
-//                 }
-//                 b = 1;
-//             }
-//         }
-//         
-//         int syndromeWeight_temp = 0;
-//         for (int ii = 0; ii < ldpc.m; ++ii)
-//         {
-//             if (S[ii].getElement() != 0)
-//                 syndromeWeight_temp += 1; 
-//         }
-//         if (syndromeWeight_temp > syndromeWeight)
-//         {
-//             return 0;
-//             
-//         }
-//         else
-//         {
-//             syndromeWeight = syndromeWeight_temp;
-//         }
-//     }
-//     if (syndromeWeight == 0)
-//     {
-//         return 1;
-//     }
-//     else
-//     {
-//         return 0;
-//     }
-// }
