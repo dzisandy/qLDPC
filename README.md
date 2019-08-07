@@ -4,6 +4,7 @@
 ## About
 My implementations of single/multiple threshold majority decoding algorithms.
 The original paper by A.Frolov and V.Zyablov in "Advances in Mathematics of Communications", 2017.
+
 [Link on paper](https://github.com/dzisandy/qLDPC/blob/master/2017_amc.pdf)
 
 
