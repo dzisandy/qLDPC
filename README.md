@@ -5,7 +5,7 @@
 My implementations of single/multiple threshold majority decoding algorithms. The original paper by A.Frolov and V.Zyablov in "Advances in Mathematics of Communications", 2017.
 
 
-## Milestones
+## Contents
 
 1. Implemented both algorithms from paper, built up a FER/p dependency. (As ISP research project)
 
