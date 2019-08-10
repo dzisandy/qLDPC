@@ -81,7 +81,7 @@ bool Threshold(LDPC& ldpc, const vector<FieldElement>& x, int max_iter, int thet
                     index = k;
                 }
             }
-            if (max - result[0] > theta){
+            if (max - result[0] >=  theta){
                 if (y[i].getElement() != index)
                 {
                     y[i] = FieldElement(index);
@@ -91,7 +91,7 @@ bool Threshold(LDPC& ldpc, const vector<FieldElement>& x, int max_iter, int thet
                         affected_rows.push_back(ldpc.col_row(i,k));
                     }
                 }
-            }
+            } 
         }
     }
 

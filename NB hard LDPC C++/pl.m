@@ -1,14 +1,19 @@
-load('result_q=16_ldpc=test.alist_decoder=5_iter=10.mat')
+% plotiing functions, for data, refer to test.m
+matrix = 'H500x100_R080_q16_reg3.alist';
+error = 'FER 3';
+load(sprintf('result_q=16_ldpc=%s_decoder=5_iter=10.mat', matrix))
 semilogy(snr_array, fer, '-r')
 grid on
 hold on
-load('result_q=16_ldpc=test.alist_decoder=7_iter=10_thetas_num=5.mat')
+load(sprintf('result_q=16_ldpc=%s_decoder=7_iter=10_thetas_num=3.mat', matrix))
 semilogy(snr_array, fer, '-b')
-load('result_q=16_ldpc=test.alist_decoder=7_iter=10_thetas_num=3.mat')
+load(sprintf('result_q=16_ldpc=%s_decoder=7_iter=10_thetas_num=2.mat', matrix))
 semilogy(snr_array, fer, '-p')
-load('result_q=16_ldpc=test.alist_decoder=7_iter=10_thetas_num=1.mat')
+load(sprintf('result_q=16_ldpc=%s_decoder=7_iter=10_thetas_num=1.mat', matrix))
 semilogy(snr_array, fer, '-g')
-load('result_q=16_ldpc=test.alist_decoder=6_iter=10.mat')
-semilogy(snr_array, fer, '-k')
+load(sprintf('result_q=16_ldpc=%s_decoder=6_iter=10.mat', matrix))
+semilogy(snr_array, fer, '-c')
+%load(sprintf('result_q=16_ldpc=%s_decoder=7_iter=10_thetas_num=5.mat', matrix))
+%semilogy(snr_array, ser, '-m')
 hold off
-legend('Majority','Threshold 5', 'Threshold 3', 'Treshold 1', 'MajoritySeq')
+legend(sprintf('%s Majority ', error),sprintf('%s Treshold 3', error),sprintf('%s Treshold 2', error), sprintf('%s Treshold 1', error), sprintf('%s MajoritySeq', error))
