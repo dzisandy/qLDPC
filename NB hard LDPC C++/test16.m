@@ -1,4 +1,4 @@
-%running the  simulation, creating files for plotting
+%Running the  simulation for Q = 16, creating files for plotting.
 fe = 20;
 snr = 1:0.5:8.5;
 addpath encoder;
