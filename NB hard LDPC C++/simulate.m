@@ -2,8 +2,30 @@ function simulate(ldpc_filename, decoder, iter, snr_array, fe ,thetas)
     % initialize LDPC 
     [h, q] = alist2sparse(ldpc_filename);
  
-    init_ldpc = @(x) decode_soft(0, x);
-    decode_ldpc = @(decoder, ldpc, iter, x, thetas, thetas_num) decode_soft(decoder, ldpc, iter, x, thetas, thetas_num);
+    %init_ldpc = @(x) decode_soft(0, x);
+    if (q == 2)
+        init_ldpc = @(x) decode_soft_2(0, x);
+        decode_ldpc = @(decoder, ldpc, iter, x, thetas, thetas_num) decode_soft_2(decoder, ldpc, iter, x, thetas, thetas_num);
+    elseif (q == 4)
+        init_ldpc = @(x) decode_soft_4(0, x);
+        decode_ldpc = @(decoder, ldpc, iter, x, thetas, thetas_num) decode_soft_4(decoder, ldpc, iter, x, thetas, thetas_num);
+    elseif (q == 8)
+        init_ldpc = @(x) decode_soft_8(0, x);
+        decode_ldpc = @(decoder, ldpc, iter, x, thetas, thetas_num) decode_soft_8(decoder, ldpc, iter, x, thetas, thetas_num);
+    elseif (q == 16)
+        init_ldpc = @(x) decode_soft_16(0, x);
+        decode_ldpc = @(decoder, ldpc, iter, x, thetas, thetas_num) decode_soft_16(decoder, ldpc, iter, x, thetas, thetas_num);
+    elseif (q == 32)
+        init_ldpc = @(x) decode_soft_32(0, x);
+        decode_ldpc = @(decoder, ldpc, iter, x, thetas, thetas_num) decode_soft_32(decoder, ldpc, iter, x, thetas, thetas_num);
+    elseif (q == 64)
+        init_ldpc = @(x) decode_soft_64(0, x);
+        decode_ldpc = @(decoder, ldpc, iter, x, thetas, thetas_num) decode_soft_64(decoder, ldpc, iter, x, thetas, thetas_num);
+    elseif (q == 256)
+        init_ldpc = @(x) decode_soft_256(0, x);
+        decode_ldpc = @(decoder, ldpc, iter, x, thetas, thetas_num) decode_soft_256(decoder, ldpc, iter, x, thetas, thetas_num);
+    end
+    %decode_ldpc = @(decoder, ldpc, iter, x, thetas, thetas_num) decode_soft(decoder, ldpc, iter, x, thetas, thetas_num);
     
     [H, G] = ldpc_h2g(h,q);
     [K, N] = size(G);
@@ -95,7 +117,11 @@ function simulate(ldpc_filename, decoder, iter, snr_array, fe ,thetas)
             save(sprintf('result_q=%d_ldpc=%s_decoder=%d_iter=%d_thetas_num=%d.mat', q, ldpc_filename, decoder, iter, length(thetas)));
         else
             save(sprintf('result_q=%d_ldpc=%s_decoder=%d_iter=%d.mat', q, ldpc_filename, decoder, iter));
-        end 
+        end
+        
+        if fer(ii) < 1e-3
+            break;
+        end
    end
     
 end
