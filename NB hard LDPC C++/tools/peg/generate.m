@@ -1,3 +1,4 @@
+% Generating matrices of size a x b over GF(q) with weights 3,5,7. Use for save_m.m in ./tools/conv
 a = 80;
 b = 400;
 q = 32;
