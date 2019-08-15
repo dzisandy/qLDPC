@@ -11,7 +11,7 @@ function [H, Q] = alist2sparse(file_name)
     end
     N = temp(1);
     M = temp(2);
-    if count == 2
+    if (count == 2) || (temp(3) == 2)
         disp('Binary matrix');
         bBinary = 1;
         Q = 2;

@@ -1,15 +1,19 @@
 %Used for plotting the results, taken from test_.m. Set Q and column
 %weight.
-qq = 32; % Q = 2/8/16/32 
-weight = 7;  % w_c = 3/5/7
+qq = 64; % Q = 2/4/8/16/32/64 
+weight = 3;  % w_c = 3/5/7
 if (qq == 2)
     matrix = sprintf('H400x2000_R080_q%i_reg%i.alist',qq, weight);
+elseif (qq == 4)
+    matrix = sprintf('H200x1000_R080_q%i_reg%i.alist',qq, weight);
 elseif (qq == 8)
     matrix = sprintf('H133x667_R080_q%i_reg%i.alist',qq, weight);
 elseif (qq == 16)
     matrix = sprintf('H100x500_R080_q%i_reg%i.alist',qq, weight);
 elseif (qq == 32)
     matrix = sprintf('H80x400_R080_q%i_reg%i.alist',qq, weight);
+elseif (qq == 64)
+    matrix = sprintf('H67x334_R080_q%i_reg%i.alist',qq, weight);
 end
 
 load(sprintf('result_q=%i_ldpc=%s_decoder=5_iter=10.mat',qq, matrix))

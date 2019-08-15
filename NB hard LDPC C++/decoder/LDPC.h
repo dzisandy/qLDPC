@@ -45,7 +45,7 @@ public:
         if (fscanf(fp, "%d%d%d", &n, &m, &q) == 2)
         {
 			mexPrintf("ERROR: Cannot work with binary matrix\n");
-            return;
+            //return;
         }
         if (q != Q)
         {
