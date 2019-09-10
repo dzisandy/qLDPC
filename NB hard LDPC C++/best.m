@@ -13,7 +13,7 @@ for qq = [4,16,32,64]
         matrix = sprintf('H80x400_R080_q%i_reg%i.alist',qq, weight);
     elseif (qq == 64)
         matrix = sprintf('H67x334_R080_q%i_reg%i.alist',qq, weight);
-    elseif (q == 4)
+    elseif (qq == 4)
         matrix = sprintf('H200x1000_R080_q%i_reg%i.alist',qq, weight);
     end
  load(sprintf('result_q=%i_ldpc=%s_decoder=7_iter=10_thetas_num=%i.mat',qq, matrix, i))

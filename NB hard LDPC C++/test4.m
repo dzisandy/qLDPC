@@ -31,7 +31,7 @@ for qq = [4]
                 simulate(matrix_q_4(ii,:),i, 10, snr, fe,[3,2,1,0]);
                 simulate(matrix_q_4(ii,:),i, 10, snr, fe,[4,3,2,1,0]);
                 simulate(matrix_q_4(ii,:),i, 10, snr, fe,[5,4,3,2,1,0]);
-                simulate(matrix_q_4(ii,:),i, 10, snr, fe,[6,4,3,2,1,0]);
+                simulate(matrix_q_4(ii,:),i, 10, snr, fe,[6,5,4,3,2,1,0]);
             end  
                 
         end    
@@ -54,7 +54,7 @@ for qq = [4]
                 simulate(matrix_q_16(ii,:),i, 10, snr, fe,[3,2,1,0]);
                 simulate(matrix_q_16(ii,:),i, 10, snr, fe,[4,3,2,1,0]);
                 simulate(matrix_q_16(ii,:),i, 10, snr, fe,[5,4,3,2,1,0]);
-                simulate(matrix_q_16(ii,:),i, 10, snr, fe,[6,4,3,2,1,0]);
+                simulate(matrix_q_16(ii,:),i, 10, snr, fe,[6,5,4,3,2,1,0]);
             end  
                 
         end  
@@ -77,7 +77,7 @@ for qq = [4]
                 simulate(matrix_q_32(ii,:),i, 10, snr, fe,[3,2,1,0]);
                 simulate(matrix_q_32(ii,:),i, 10, snr, fe,[4,3,2,1,0]);
                 simulate(matrix_q_32(ii,:),i, 10, snr, fe,[5,4,3,2,1,0]);
-                simulate(matrix_q_32(ii,:),i, 10, snr, fe,[6,4,3,2,1,0]);
+                simulate(matrix_q_32(ii,:),i, 10, snr, fe,[6,5,4,3,2,1,0]);
             end  
                 
         end    

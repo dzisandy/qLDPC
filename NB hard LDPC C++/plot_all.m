@@ -1,7 +1,7 @@
 %Used for plotting the results, taken from test_.m. Set Q and column
 %weight.
 qq = 64; % Q = 2/4/8/16/32/64 
-weight = 3;  % w_c = 3/5/7
+weight = 5;  % w_c = 3/5/7
 if (qq == 2)
     matrix = sprintf('H400x2000_R080_q%i_reg%i.alist',qq, weight);
 elseif (qq == 4)
