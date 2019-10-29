@@ -21,8 +21,7 @@ Implemented single/multiple threshold majority decoding algorithms from paper, b
   
 ## Results
 1. Effect of multi-threshold decoding on binary performance:
-  ![Screenshot](screenshot.png)
-  
+  ![alt tag](https://github.com/dzisandy/qLDPC/blob/master/NB%20hard%20LDPC%20C%2B%2B/Inputber.png)  
 2. Comparison of performance in terms of BER:
 
 3. Comparison of performance in terms of SER:
