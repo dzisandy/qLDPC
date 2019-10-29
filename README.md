@@ -37,7 +37,7 @@ Implemented single/multiple threshold majority decoding algorithms from paper, b
   * weight = 5:
     ![alt tag](https://github.com/dzisandy/qLDPC/blob/master/NB%20hard%20LDPC%20C%2B%2B/Compare_weight%3D5.png)  
   * weight = 7:
-    ![alt tag](https://github.com/dzisandy/qLDPC/blob/master/NB%20hard%20LDPC%20C%2B%2B/Compare_weight%3D7.png)  
+    ![alt tag](https://github.com/dzisandy/qLDPC/blob/master/NB%20hard%20LDPC%20C%2B%2B/Compare_weight%253D7.png)  
   * weight = 9:
     ![alt tag](https://github.com/dzisandy/qLDPC/blob/master/NB%20hard%20LDPC%20C%2B%2B/Compare_weight%253D9.png)  
 
