@@ -20,13 +20,23 @@ Implemented single/multiple threshold majority decoding algorithms from paper, b
   "On the Hard-Decision Multi-Threshold Decoding of Binary and Non-Binary LDPC Codes"
   
 ## Results
-1. Effect of multi-threshold decoding on binary performance:
+1. Effect of multi-threshold decoding on binary performance in comparison with single-threshold for different column weights of matrices:
   ![alt tag](https://github.com/dzisandy/qLDPC/blob/master/NB%20hard%20LDPC%20C%2B%2B/binary_soft_decoder/binary_comparison.png)
 2. Comparison of performance in terms of input Bit Error Rate (BER):
   ![alt tag](https://github.com/dzisandy/qLDPC/blob/master/NB%20hard%20LDPC%20C%2B%2B/Inputber.png)  
 3. Comparison of performance in terms of input Symbol Error Rate (SER):
   ![alt tag](https://github.com/dzisandy/qLDPC/blob/master/NB%20hard%20LDPC%20C%2B%2B/Inputser.png)  
-4. Optimization in case of performance for different matrices
+4. Optimization in case of performance for different matrices, with the given column weights: 
+  * weight = 3:
+    ![alt tag](https://github.com/dzisandy/qLDPC/blob/master/NB%20hard%20LDPC%20C%2B%2B/Compare_weight%3D3.png)  
+  * weight = 5:
+    ![alt tag](https://github.com/dzisandy/qLDPC/blob/master/NB%20hard%20LDPC%20C%2B%2B/Compare_weight%3D5.png)  
+  * weight = 7:
+    ![alt tag](https://github.com/dzisandy/qLDPC/blob/master/NB%20hard%20LDPC%20C%2B%2B/Compare_weight%3D7.png)  
+  * weight = 9:
+    ![alt tag](https://github.com/dzisandy/qLDPC/blob/master/NB%20hard%20LDPC%20C%2B%2B/Compare_weight%3D9.png)  
+
+
 
 ## Research Group
 * Andrei Dzis
