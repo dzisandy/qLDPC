@@ -2,10 +2,15 @@
 
 
 ## About
-My implementations of single/multiple threshold majority decoding algorithms. Used for paper "On the Hard-Decision Multi-Threshold Decoding of Binary and Non-Binary LDPC Codes"
+My implementations of single/multiple threshold majority decoding algorithms. 
 The original paper by A.Frolov and V.Zyablov in "Advances in Mathematics of Communications", 2017.
 
-[Link on paper](https://github.com/dzisandy/qLDPC/blob/master/2017_amc.pdf)
+[Link on paper by A.Flolov and V.Zyablov](https://github.com/dzisandy/qLDPC/blob/master/2017_amc.pdf)
+
+As the result of this work, paper "On the Hard-Decision Multi-Threshold Decoding of Binary and Non-Binary LDPC Codes" is successfully represented at "XVI International Symposium Problems of Redundancy in Information and Control Systems", 2019. 
+
+
+[Link on represented paper will be here soon](https://github.com/dzisandy)
 
 
 ## Milestones
