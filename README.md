@@ -10,7 +10,7 @@ The original paper by A.Frolov and V.Zyablov in "Advances in Mathematics of Comm
 As the result of this work, paper "On the Hard-Decision Multi-Threshold Decoding of Binary and Non-Binary LDPC Codes" is successfully represented at "XVI International Symposium Problems of Redundancy in Information and Control Systems", 2019. 
 
 
-[Link on represented paper will be here soon](https://github.com/dzisandy)
+[Link on the paper](https://ieeexplore.ieee.org/document/9003311)
 
 
 ## Milestones
